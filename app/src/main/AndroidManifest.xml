@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.solstice.solsticechallenge">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".SolsticeApplication"
         android:allowBackup="true"

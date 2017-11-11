@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 
 public interface ContactsApi {
 
-    @GET("?")
+    @GET("contacts.json")
     Call<List<Contact>> getContactsList();
 }

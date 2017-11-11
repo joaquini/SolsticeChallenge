@@ -23,6 +23,7 @@ ext {
     daggerVersion = '2.13'
     retrofitVersion = '2.3.0'
     supportLibraryVersion = '27.0.1'
+    eventbusVersion = '3.1.1'
 }
 
 dependencies {
@@ -33,6 +34,7 @@ dependencies {
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "org.greenrobot:eventbus:$eventbusVersion"
     compileOnly "javax.annotation:jsr250-api:1.0"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     testImplementation "junit:junit:4.12"

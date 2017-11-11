@@ -19,7 +19,7 @@ public class NetworkModule {
     @Provides
     @Named(NAME_BASE_URL)
     String provideBaseUrlString() {
-        return "https://s3.amazonaws.com/technical-challenge/v3/contacts.json";
+        return "https://s3.amazonaws.com/technical-challenge/v3/";
     }
 
     @Provides

@@ -1,5 +1,6 @@
 package com.solstice.solsticechallenge.dagger.module;
 
+import com.solstice.solsticechallenge.mvp.model.MainModel;
 import com.solstice.solsticechallenge.mvp.presenter.MainPresenter;
 
 import javax.inject.Singleton;
@@ -12,7 +13,7 @@ public class PresenterModule {
 
     @Provides
     @Singleton
-    MainPresenter provideMainPresenter() {
-        return new MainPresenter();
+    MainPresenter provideMainPresenter(MainModel model) {
+        return new MainPresenter(model);
     }
 }
