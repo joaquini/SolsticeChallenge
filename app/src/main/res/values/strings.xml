@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SolsticeChallenge</string>
+    <string name="error_getting_contacts">An error ocurred while getting the contacts</string>
 </resources>
