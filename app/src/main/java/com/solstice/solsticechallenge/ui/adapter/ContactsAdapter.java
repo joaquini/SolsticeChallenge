@@ -1,4 +1,4 @@
-package com.solstice.solsticechallenge.adapter;
+package com.solstice.solsticechallenge.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,7 +46,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         this.contactsList = contactList;
     }
 
-    class ContactsViewHolder extends RecyclerView.ViewHolder {
+    public class ContactsViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.name)
         TextView name;

@@ -1,4 +1,4 @@
-package com.solstice.solsticechallenge;
+package com.solstice.solsticechallenge.ui.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,9 +6,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.solstice.solsticechallenge.adapter.ContactsAdapter;
-import com.solstice.solsticechallenge.mvp.presenter.MainPresenter;
-import com.solstice.solsticechallenge.mvp.view.MainView;
+import com.solstice.solsticechallenge.R;
+import com.solstice.solsticechallenge.SolsticeApplication;
+import com.solstice.solsticechallenge.ui.adapter.ContactsAdapter;
+import com.solstice.solsticechallenge.ui.mvp.presenter.MainPresenter;
+import com.solstice.solsticechallenge.ui.mvp.view.MainView;
 import com.solstice.solsticechallenge.pojo.Contact;
 
 import java.util.List;

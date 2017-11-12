@@ -1,4 +1,4 @@
-package com.solstice.solsticechallenge.event;
+package com.solstice.solsticechallenge.ui.event;
 
 public abstract class BusEvent {
 

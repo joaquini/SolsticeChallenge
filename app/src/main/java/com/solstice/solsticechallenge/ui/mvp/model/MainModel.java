@@ -1,6 +1,6 @@
-package com.solstice.solsticechallenge.mvp.model;
+package com.solstice.solsticechallenge.ui.mvp.model;
 
-import com.solstice.solsticechallenge.event.ContactsDownloadedEvent;
+import com.solstice.solsticechallenge.ui.event.ContactsDownloadedEvent;
 import com.solstice.solsticechallenge.network.api.ContactsApi;
 import com.solstice.solsticechallenge.pojo.Contact;
 
