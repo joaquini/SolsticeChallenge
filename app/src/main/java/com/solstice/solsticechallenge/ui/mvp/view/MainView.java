@@ -1,4 +1,4 @@
-package com.solstice.solsticechallenge.mvp.view;
+package com.solstice.solsticechallenge.ui.mvp.view;
 
 import android.support.annotation.StringRes;
 

@@ -1,11 +1,11 @@
-package com.solstice.solsticechallenge.mvp.presenter;
+package com.solstice.solsticechallenge.ui.mvp.presenter;
 
 import android.support.annotation.Nullable;
 
 import com.solstice.solsticechallenge.R;
-import com.solstice.solsticechallenge.event.ContactsDownloadedEvent;
-import com.solstice.solsticechallenge.mvp.model.MainModel;
-import com.solstice.solsticechallenge.mvp.view.MainView;
+import com.solstice.solsticechallenge.ui.event.ContactsDownloadedEvent;
+import com.solstice.solsticechallenge.ui.mvp.model.MainModel;
+import com.solstice.solsticechallenge.ui.mvp.view.MainView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
