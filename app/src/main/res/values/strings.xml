@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">SolsticeChallenge</string>
     <string name="error_getting_contacts">An error ocurred while getting the contacts</string>
+    <string name="loading_contacts_message">Loading your contacts</string>
+    <string name="menu_clear_contacts">Clear all contacts</string>
+    <string name="dialog_ask_delete_confirmation">All contacts will be deleted</string>
+    <string name="dialog_ask_delete_positive_button">Delete all</string>
+    <string name="dialog_ask_delete_negative_button">Cancel</string>
+    <string name="main_title">Contacts</string>
 </resources>

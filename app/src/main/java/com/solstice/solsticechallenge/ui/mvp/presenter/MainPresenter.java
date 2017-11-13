@@ -3,7 +3,7 @@ package com.solstice.solsticechallenge.ui.mvp.presenter;
 import android.support.annotation.Nullable;
 
 import com.solstice.solsticechallenge.R;
-import com.solstice.solsticechallenge.ui.event.ContactsDownloadedEvent;
+import com.solstice.solsticechallenge.ui.event.ContactsFetchedEvent;
 import com.solstice.solsticechallenge.ui.mvp.model.MainModel;
 import com.solstice.solsticechallenge.ui.mvp.view.MainView;
 
@@ -27,22 +27,36 @@ public class MainPresenter {
 
     public void setView(MainView view) {
         this.view = view;
+        view.setTitle(R.string.main_title);
     }
 
     public void loadData() {
         if (view != null) {
-            model.getContacts();
+            view.showLoading();
+            if (model.contactsDatabaseIsEmpty()) {
+                model.fetchContacts();
+            } else {
+                showContacts();
+            }
         }
     }
 
     @Subscribe
-    public void onContactsDownloaded(ContactsDownloadedEvent event) {
+    public void onContactsDownloaded(ContactsFetchedEvent event) {
         if (view != null) {
+            view.hideLoading();
             if (event.isSuccess()) {
-                view.showContacts(event.getContactList());
+                showContacts();
             } else {
                 view.showMessage(R.string.error_getting_contacts);
             }
+        }
+    }
+
+    private void showContacts() {
+        if (view != null) {
+            view.showContacts(model.getFavoriteContactsList(), model.getNonFavoriteContactsList());
+            view.hideLoading();
         }
     }
 
@@ -52,5 +66,16 @@ public class MainPresenter {
 
     public void unsubscribeBus() {
         bus.unregister(this);
+    }
+
+    public void onDeleteContactsItemPressed() {
+        if (view != null) {
+            view.displayDeleteContactsConfirmationDialog();
+        }
+    }
+
+    public void onDeleteContactsConfirmed() {
+        model.deleteAllContactsFromDatabase();
+        showContacts();
     }
 }

@@ -5,6 +5,7 @@ import android.app.Application;
 import com.solstice.solsticechallenge.dagger.component.AppComponent;
 import com.solstice.solsticechallenge.dagger.component.DaggerAppComponent;
 import com.solstice.solsticechallenge.dagger.module.AppModule;
+import com.solstice.solsticechallenge.dagger.module.RoomDatabaseModule;
 
 public class SolsticeApplication extends Application {
 
@@ -23,6 +24,7 @@ public class SolsticeApplication extends Application {
     protected AppComponent initDagger(SolsticeApplication application) {
         return DaggerAppComponent.builder()
                 .appModule(new AppModule(application))
+                .roomDatabaseModule(new RoomDatabaseModule(application))
                 .build();
     }
 }
