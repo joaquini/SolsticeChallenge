@@ -26,6 +26,7 @@ ext {
     eventbusVersion = '3.1.1'
     butterknifeVersion = '8.8.1'
     componentsVersion = '1.0.0'
+    picassoVersion = '2.5.2'
 }
 
 dependencies {
@@ -38,6 +39,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "org.greenrobot:eventbus:$eventbusVersion"
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$componentsVersion"

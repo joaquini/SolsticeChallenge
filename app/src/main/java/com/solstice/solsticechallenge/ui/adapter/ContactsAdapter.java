@@ -4,10 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.solstice.solsticechallenge.R;
 import com.solstice.solsticechallenge.ui.mvp.model.entities.Contact;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -61,6 +63,11 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ItemCo
 
         String name = contact.getName();
         holder.name.setText(name);
+        Picasso.with(holder.image.getContext())
+                .load(contact.getSmallImageURL())
+                .placeholder(R.drawable.ic_profile)
+                .error(R.drawable.ic_profile)
+                .into(holder.image);
     }
 
     @Override
@@ -97,6 +104,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ItemCo
 
         @BindView(R.id.name)
         TextView name;
+        @BindView(R.id.image)
+        ImageView image;
 
         ItemContactsViewHolder(View itemView) {
             super(itemView);
