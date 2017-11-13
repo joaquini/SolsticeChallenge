@@ -28,13 +28,10 @@ public interface ContactsDao {
     @Query("SELECT * FROM contacts WHERE id LIKE :id")
     public List<Contact> findContact(String id);
 
-    @Query("SELECT * FROM contacts")
-    public List<Contact> findAllContacts();
-
-    @Query("SELECT * FROM contacts WHERE favorite = 1")
+    @Query("SELECT * FROM contacts WHERE favorite = 1 ORDER BY name")
     public List<Contact> findFavoriteContacts();
 
-    @Query("SELECT * FROM contacts WHERE favorite = 0")
+    @Query("SELECT * FROM contacts WHERE favorite = 0 ORDER BY name")
     public List<Contact> findNonFavoriteContacts();
 
     @Query("DELETE FROM contacts")
