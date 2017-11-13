@@ -2,6 +2,7 @@ package com.solstice.solsticechallenge.ui.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.solstice.solsticechallenge.Constants.CONTACT_ID;
+
 public class MainActivity extends AppCompatActivity implements MainView, SwipeRefreshLayout.OnRefreshListener {
 
     @Inject
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements MainView, SwipeRe
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        adapter.setListener(presenter);
         swipeRefresh.setOnRefreshListener(this);
     }
 
@@ -120,6 +124,13 @@ public class MainActivity extends AppCompatActivity implements MainView, SwipeRe
         });
 
         builder.show();
+    }
+
+    @Override
+    public void navigateToContactDetails(String id) {
+        Intent intent = new Intent(getApplicationContext(), ContactDetailsActivity.class);
+        intent.putExtra(CONTACT_ID, id);
+        startActivity(intent);
     }
 
     @Override

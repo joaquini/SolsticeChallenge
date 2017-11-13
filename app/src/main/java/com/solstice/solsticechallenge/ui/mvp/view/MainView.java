@@ -18,4 +18,6 @@ public interface MainView {
     void showContacts(List<Contact> contactList, List<Contact> nonFavoriteContactsList);
 
     void displayDeleteContactsConfirmationDialog();
+
+    void navigateToContactDetails(String id);
 }
