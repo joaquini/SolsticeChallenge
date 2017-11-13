@@ -40,6 +40,7 @@ dependencies {
     implementation "org.greenrobot:eventbus:$eventbusVersion"
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$componentsVersion"

@@ -25,6 +25,11 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ItemCo
 
     private List<Contact> favoriteContactsList;
     private List<Contact> nonFavoriteContactsList;
+    private ItemPressedListener listener;
+
+    public interface ItemPressedListener {
+        void onItemPressed(String id);
+    }
 
     @Inject
     public ContactsAdapter() {
@@ -53,7 +58,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ItemCo
 
     @Override
     public void onBindViewHolder(ItemContactsViewHolder holder, int position) {
-        Contact contact;
+        final Contact contact;
 
         if (holder.isFavorite()) {
             contact = favoriteContactsList.get(position);
@@ -63,6 +68,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ItemCo
 
         String name = contact.getName();
         holder.name.setText(name);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemPressed(contact.getId());
+            }
+        });
         Picasso.with(holder.image.getContext())
                 .load(contact.getSmallImageURL())
                 .placeholder(R.drawable.ic_profile)
@@ -100,15 +111,21 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ItemCo
         return favoriteContactsList.size() + nonFavoriteContactsList.size();
     }
 
+    public void setListener(ItemPressedListener listener) {
+        this.listener = listener;
+    }
+
     abstract class ItemContactsViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.name)
         TextView name;
         @BindView(R.id.image)
         ImageView image;
+        View itemView;
 
         ItemContactsViewHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             ButterKnife.bind(this, itemView);
         }
 

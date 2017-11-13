@@ -3,6 +3,7 @@ package com.solstice.solsticechallenge.ui.mvp.presenter;
 import android.support.annotation.Nullable;
 
 import com.solstice.solsticechallenge.R;
+import com.solstice.solsticechallenge.ui.adapter.ContactsAdapter;
 import com.solstice.solsticechallenge.ui.event.ContactsFetchedEvent;
 import com.solstice.solsticechallenge.ui.mvp.model.MainModel;
 import com.solstice.solsticechallenge.ui.mvp.view.MainView;
@@ -12,7 +13,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
-public class MainPresenter {
+public class MainPresenter implements ContactsAdapter.ItemPressedListener {
 
     @Nullable
     private MainView view;
@@ -77,5 +78,12 @@ public class MainPresenter {
     public void onDeleteContactsConfirmed() {
         model.deleteAllContactsFromDatabase();
         showContacts();
+    }
+
+    @Override
+    public void onItemPressed(String id) {
+        if (view != null) {
+            view.navigateToContactDetails(id);
+        }
     }
 }
