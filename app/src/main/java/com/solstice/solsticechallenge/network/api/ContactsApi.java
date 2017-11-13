@@ -1,6 +1,6 @@
 package com.solstice.solsticechallenge.network.api;
 
-import com.solstice.solsticechallenge.pojo.Contact;
+import com.solstice.solsticechallenge.ui.mvp.model.entities.Contact;
 
 import java.util.List;
 

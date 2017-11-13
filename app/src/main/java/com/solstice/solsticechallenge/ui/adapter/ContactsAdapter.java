@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.solstice.solsticechallenge.R;
-import com.solstice.solsticechallenge.pojo.Contact;
+import com.solstice.solsticechallenge.ui.mvp.model.entities.Contact;
 
 import java.util.List;
 
@@ -16,44 +16,117 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder> {
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ItemContactsViewHolder> {
 
-    private List<Contact> contactsList;
+    private static final int VIEW_TYPE_FAVORITE = 0;
+    private static final int VIEW_TYPE_NON_FAVORITE = 1;
+
+    private List<Contact> favoriteContactsList;
+    private List<Contact> nonFavoriteContactsList;
 
     @Inject
     public ContactsAdapter() {
     }
 
-    @Override
-    public ContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.contact_list_item, parent, false);
-        return new ContactsViewHolder(view);
+    public void setContactsList(List<Contact> favoriteContactsList, List<Contact> nonFavoriteContactsList) {
+        this.favoriteContactsList = favoriteContactsList;
+        this.nonFavoriteContactsList = nonFavoriteContactsList;
     }
 
     @Override
-    public void onBindViewHolder(ContactsViewHolder holder, int position) {
-        String name = contactsList.get(position).getName();
+    public ItemContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        if (viewType == VIEW_TYPE_FAVORITE) {
+            View view = inflater.inflate(R.layout.contact_list_favorite_item, parent, false);
+            return new FavoriteContactsViewHolder(view);
+        }
+
+        if (viewType == VIEW_TYPE_NON_FAVORITE) {
+            View view = inflater.inflate(R.layout.contact_list_non_favorite_item, parent, false);
+            return new NonFavoriteContactsViewHolder(view);
+        }
+
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(ItemContactsViewHolder holder, int position) {
+        Contact contact;
+
+        if (holder.isFavorite()) {
+            contact = favoriteContactsList.get(position);
+        } else {
+            contact = nonFavoriteContactsList.get(position - favoriteContactsList.size());
+        }
+
+        String name = contact.getName();
         holder.name.setText(name);
     }
 
     @Override
+    public int getItemViewType(int position) {
+        if (position < favoriteContactsList.size()) {
+            return VIEW_TYPE_FAVORITE;
+        }
+
+        if (position - favoriteContactsList.size() < nonFavoriteContactsList.size()) {
+            return VIEW_TYPE_NON_FAVORITE;
+        }
+
+        return -1;
+    }
+
+    @Override
     public int getItemCount() {
-        return contactsList == null ? 0 : contactsList.size();
+        if (favoriteContactsList == null && nonFavoriteContactsList == null) {
+            return 0;
+        }
+
+        if (favoriteContactsList == null) {
+            return nonFavoriteContactsList.size();
+        }
+
+        if (nonFavoriteContactsList == null) {
+            return favoriteContactsList.size();
+        }
+
+        return favoriteContactsList.size() + nonFavoriteContactsList.size();
     }
 
-    public void setContactsList(List<Contact> contactList) {
-        this.contactsList = contactList;
-    }
-
-    public class ContactsViewHolder extends RecyclerView.ViewHolder {
+    abstract class ItemContactsViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.name)
         TextView name;
 
-        public ContactsViewHolder(View itemView) {
+        ItemContactsViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        abstract boolean isFavorite();
+    }
+
+    class FavoriteContactsViewHolder extends ItemContactsViewHolder {
+
+        FavoriteContactsViewHolder(View itemView) {
+            super(itemView);
+        }
+
+        @Override
+        boolean isFavorite() {
+            return true;
+        }
+    }
+
+    class NonFavoriteContactsViewHolder extends ItemContactsViewHolder {
+
+        NonFavoriteContactsViewHolder(View itemView) {
+            super(itemView);
+        }
+
+        @Override
+        boolean isFavorite() {
+            return false;
         }
     }
 }
