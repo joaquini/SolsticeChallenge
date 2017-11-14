@@ -3,6 +3,7 @@ package com.solstice.solsticechallenge.dagger.component;
 import com.solstice.solsticechallenge.dagger.module.ImageLoadingModule;
 import com.solstice.solsticechallenge.dagger.module.RoomDatabaseModule;
 import com.solstice.solsticechallenge.dagger.module.SectionsModule;
+import com.solstice.solsticechallenge.ui.activities.ContactDetailsActivity;
 import com.solstice.solsticechallenge.ui.activities.MainActivity;
 import com.solstice.solsticechallenge.dagger.module.AppModule;
 import com.solstice.solsticechallenge.dagger.module.BusModule;
@@ -17,4 +18,6 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(MainActivity target);
+
+    void inject(ContactDetailsActivity target);
 }

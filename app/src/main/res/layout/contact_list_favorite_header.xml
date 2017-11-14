@@ -5,13 +5,14 @@
               android:background="?android:attr/selectableItemBackground"
               android:clickable="true"
               android:focusable="true"
-              android:orientation="horizontal"
-              android:padding="@dimen/padding_normal">
+              android:orientation="horizontal">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:text="@string/header_title_favorite_contacts"/>
+        android:background="@color/colorHeaderBackground"
+        android:padding="@dimen/padding_normal"
+        android:text="@string/header_title_favorite_contacts"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"/>
 
 </LinearLayout>

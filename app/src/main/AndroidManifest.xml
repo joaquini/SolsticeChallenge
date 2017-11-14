@@ -19,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.ContactDetailsActivity">
+        <activity
+            android:name=".ui.activities.ContactDetailsActivity"
+            android:parentActivityName=".ui.activities.MainActivity">
         </activity>
     </application>
 

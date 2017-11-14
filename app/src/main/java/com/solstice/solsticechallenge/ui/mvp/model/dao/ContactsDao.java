@@ -25,8 +25,8 @@ public interface ContactsDao {
     @Query("SELECT count(*) FROM contacts")
     public int countContacts();
 
-    @Query("SELECT * FROM contacts WHERE id LIKE :id")
-    public List<Contact> findContact(String id);
+    @Query("SELECT * FROM contacts WHERE id = :id")
+    public Contact findContact(String id);
 
     @Query("SELECT * FROM contacts WHERE favorite = 1 ORDER BY name")
     public List<Contact> findFavoriteContacts();
