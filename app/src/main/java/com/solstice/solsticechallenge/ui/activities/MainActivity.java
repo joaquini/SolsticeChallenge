@@ -14,7 +14,8 @@ import android.widget.Toast;
 
 import com.solstice.solsticechallenge.R;
 import com.solstice.solsticechallenge.SolsticeApplication;
-import com.solstice.solsticechallenge.ui.adapter.ContactsAdapter;
+import com.solstice.solsticechallenge.ui.adapter.sections.FavoritesSection;
+import com.solstice.solsticechallenge.ui.adapter.sections.NonFavoritesSection;
 import com.solstice.solsticechallenge.ui.mvp.model.entities.Contact;
 import com.solstice.solsticechallenge.ui.mvp.presenter.MainPresenter;
 import com.solstice.solsticechallenge.ui.mvp.view.MainView;
@@ -25,6 +26,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
 import static com.solstice.solsticechallenge.Constants.CONTACT_ID;
 
@@ -33,7 +35,11 @@ public class MainActivity extends AppCompatActivity implements MainView, SwipeRe
     @Inject
     MainPresenter presenter;
     @Inject
-    ContactsAdapter adapter;
+    SectionedRecyclerViewAdapter adapter;
+    @Inject
+    FavoritesSection favoritesSection;
+    @Inject
+    NonFavoritesSection nonFavoritesSection;
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
@@ -47,24 +53,26 @@ public class MainActivity extends AppCompatActivity implements MainView, SwipeRe
         ((SolsticeApplication) getApplication()).getAppComponent().inject(this);
         ButterKnife.bind(this);
 
+        adapter.addSection(favoritesSection);
+        adapter.addSection(nonFavoritesSection);
+        favoritesSection.setListener(presenter); //TODO
+        nonFavoritesSection.setListener(presenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        adapter.setListener(presenter);
         swipeRefresh.setOnRefreshListener(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.subscribeBus();
         presenter.setView(this);
-        presenter.loadData();
+        presenter.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        presenter.unsubscribeBus();
+        presenter.onPause();
     }
 
     @Override
@@ -102,7 +110,8 @@ public class MainActivity extends AppCompatActivity implements MainView, SwipeRe
 
     @Override
     public void showContacts(List<Contact> favoriteContactsList, List<Contact> nonFavoriteContactsList) {
-        adapter.setContactsList(favoriteContactsList, nonFavoriteContactsList);
+        favoritesSection.setContactList(favoriteContactsList);
+        nonFavoritesSection.setContactList(nonFavoriteContactsList);
         adapter.notifyDataSetChanged();
     }
 
@@ -135,6 +144,6 @@ public class MainActivity extends AppCompatActivity implements MainView, SwipeRe
 
     @Override
     public void onRefresh() {
-        presenter.loadData();
+        presenter.onRefresh();
     }
 }

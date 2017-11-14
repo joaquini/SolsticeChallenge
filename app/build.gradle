@@ -27,6 +27,7 @@ ext {
     butterknifeVersion = '8.8.1'
     componentsVersion = '1.0.0'
     picassoVersion = '2.5.2'
+    sectionedRecyclerVersion = '1.1.3'
 }
 
 dependencies {
@@ -40,7 +41,7 @@ dependencies {
     implementation "org.greenrobot:eventbus:$eventbusVersion"
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:$sectionedRecyclerVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$componentsVersion"

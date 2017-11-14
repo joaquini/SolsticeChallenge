@@ -5,22 +5,13 @@
               android:background="?android:attr/selectableItemBackground"
               android:clickable="true"
               android:focusable="true"
-              android:orientation="vertical">
-
-    <RatingBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numStars="1"/>
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="@dimen/image_size"
-        android:layout_height="@dimen/image_size"/>
+              android:orientation="horizontal"
+              android:padding="@dimen/padding_normal">
 
     <TextView
-        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:text="@string/header_title_non_favorite_contacts"/>
 
 </LinearLayout>
