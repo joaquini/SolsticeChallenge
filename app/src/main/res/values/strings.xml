@@ -7,4 +7,6 @@
     <string name="dialog_ask_delete_positive_button">Delete all</string>
     <string name="dialog_ask_delete_negative_button">Cancel</string>
     <string name="main_title">Contacts</string>
+    <string name="header_title_favorite_contacts">Favorite contacts</string>
+    <string name="header_title_non_favorite_contacts">Other contacts</string>
 </resources>

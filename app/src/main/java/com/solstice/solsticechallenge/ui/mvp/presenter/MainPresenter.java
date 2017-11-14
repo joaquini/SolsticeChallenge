@@ -3,7 +3,7 @@ package com.solstice.solsticechallenge.ui.mvp.presenter;
 import android.support.annotation.Nullable;
 
 import com.solstice.solsticechallenge.R;
-import com.solstice.solsticechallenge.ui.adapter.ContactsAdapter;
+import com.solstice.solsticechallenge.ui.adapter.sections.ContactsAbstractSection;
 import com.solstice.solsticechallenge.ui.event.ContactsFetchedEvent;
 import com.solstice.solsticechallenge.ui.mvp.model.MainModel;
 import com.solstice.solsticechallenge.ui.mvp.view.MainView;
@@ -13,7 +13,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
-public class MainPresenter implements ContactsAdapter.ItemPressedListener {
+public class MainPresenter implements ContactsAbstractSection.ItemPressedListener {
 
     @Nullable
     private MainView view;
@@ -31,42 +31,17 @@ public class MainPresenter implements ContactsAdapter.ItemPressedListener {
         view.setTitle(R.string.main_title);
     }
 
-    public void loadData() {
-        if (view != null) {
-            view.showLoading();
-            if (model.contactsDatabaseIsEmpty()) {
-                model.fetchContacts();
-            } else {
-                showContacts();
-            }
-        }
+    public void onResume() {
+        registerBus();
+        loadData();
     }
 
-    @Subscribe
-    public void onContactsDownloaded(ContactsFetchedEvent event) {
-        if (view != null) {
-            view.hideLoading();
-            if (event.isSuccess()) {
-                showContacts();
-            } else {
-                view.showMessage(R.string.error_getting_contacts);
-            }
-        }
+    public void onPause() {
+        unregisterBus();
     }
 
-    private void showContacts() {
-        if (view != null) {
-            view.showContacts(model.getFavoriteContactsList(), model.getNonFavoriteContactsList());
-            view.hideLoading();
-        }
-    }
-
-    public void subscribeBus() {
-        bus.register(this);
-    }
-
-    public void unsubscribeBus() {
-        bus.unregister(this);
+    public void onRefresh() {
+        loadData();
     }
 
     public void onDeleteContactsItemPressed() {
@@ -84,6 +59,44 @@ public class MainPresenter implements ContactsAdapter.ItemPressedListener {
     public void onItemPressed(String id) {
         if (view != null) {
             view.navigateToContactDetails(id);
+        }
+    }
+
+    private void loadData() {
+        if (view != null) {
+            view.showLoading();
+            if (model.contactsDatabaseIsEmpty()) {
+                model.fetchContacts();
+            } else {
+                showContacts();
+            }
+        }
+    }
+
+    private void showContacts() {
+        if (view != null) {
+            view.showContacts(model.getFavoriteContactsList(), model.getNonFavoriteContactsList());
+            view.hideLoading();
+        }
+    }
+
+    private void registerBus() {
+        bus.register(this);
+    }
+
+    private void unregisterBus() {
+        bus.unregister(this);
+    }
+
+    @Subscribe
+    public void onContactsDownloaded(ContactsFetchedEvent event) {
+        if (view != null) {
+            view.hideLoading();
+            if (event.isSuccess()) {
+                showContacts();
+            } else {
+                view.showMessage(R.string.error_getting_contacts);
+            }
         }
     }
 }
