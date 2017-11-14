@@ -20,4 +20,6 @@ public interface MainView {
     void displayDeleteContactsConfirmationDialog();
 
     void navigateToContactDetails(String id);
+
+    void removeAllSections();
 }

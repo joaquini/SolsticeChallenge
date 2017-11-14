@@ -35,7 +35,7 @@ public abstract class ContactsAbstractSection extends StatelessSection {
 
     @Override
     public int getContentItemsTotal() {
-        return getContactList().size();
+        return getContactList() == null ? 0 : getContactList().size();
     }
 
     @Override

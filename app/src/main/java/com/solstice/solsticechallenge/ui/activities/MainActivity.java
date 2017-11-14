@@ -53,9 +53,7 @@ public class MainActivity extends AppCompatActivity implements MainView, SwipeRe
         ((SolsticeApplication) getApplication()).getAppComponent().inject(this);
         ButterKnife.bind(this);
 
-        adapter.addSection(favoritesSection);
-        adapter.addSection(nonFavoritesSection);
-        favoritesSection.setListener(presenter); //TODO
+        favoritesSection.setListener(presenter);
         nonFavoritesSection.setListener(presenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -110,6 +108,13 @@ public class MainActivity extends AppCompatActivity implements MainView, SwipeRe
 
     @Override
     public void showContacts(List<Contact> favoriteContactsList, List<Contact> nonFavoriteContactsList) {
+        if (!favoriteContactsList.isEmpty()) {
+            adapter.addSection(favoritesSection);
+        }
+        if (!nonFavoriteContactsList.isEmpty()) {
+            adapter.addSection(nonFavoritesSection);
+        }
+        
         favoritesSection.setContactList(favoriteContactsList);
         nonFavoritesSection.setContactList(nonFavoriteContactsList);
         adapter.notifyDataSetChanged();
@@ -140,6 +145,11 @@ public class MainActivity extends AppCompatActivity implements MainView, SwipeRe
         Intent intent = new Intent(getApplicationContext(), ContactDetailsActivity.class);
         intent.putExtra(CONTACT_ID, id);
         startActivity(intent);
+    }
+
+    @Override
+    public void removeAllSections() {
+        adapter.removeAllSections();
     }
 
     @Override
