@@ -51,8 +51,10 @@ public class MainPresenter implements ContactsAbstractSection.ItemPressedListene
     }
 
     public void onDeleteContactsConfirmed() {
-        model.deleteAllContactsFromDatabase();
-        showContacts();
+        if (view != null) {
+            model.deleteAllContactsFromDatabase();
+            showContacts();
+        }
     }
 
     @Override
@@ -75,6 +77,7 @@ public class MainPresenter implements ContactsAbstractSection.ItemPressedListene
 
     private void showContacts() {
         if (view != null) {
+            view.removeAllSections();
             view.showContacts(model.getFavoriteContactsList(), model.getNonFavoriteContactsList());
             view.hideLoading();
         }
