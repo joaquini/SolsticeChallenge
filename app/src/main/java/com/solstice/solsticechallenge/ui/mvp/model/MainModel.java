@@ -15,9 +15,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainModel {
+import static com.solstice.solsticechallenge.Constants.RESPONSE_CODE_OK;
 
-    private final static int RESPONSE_CODE_OK = 200;
+public class MainModel {
 
     private ContactsDao contactsDao;
     private EventBus bus;
