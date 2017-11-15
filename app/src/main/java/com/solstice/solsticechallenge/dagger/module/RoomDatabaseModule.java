@@ -4,8 +4,8 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 
 import com.solstice.solsticechallenge.Constants;
-import com.solstice.solsticechallenge.ui.mvp.model.dao.ContactsDao;
-import com.solstice.solsticechallenge.ui.mvp.model.db.ContactsDatabase;
+import com.solstice.solsticechallenge.data.dao.ContactsDao;
+import com.solstice.solsticechallenge.data.db.ContactsDatabase;
 
 import javax.inject.Singleton;
 

@@ -1,55 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contact details"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"/>
+        <ImageView
+            android:id="@+id/image"
+            android:padding="@dimen/padding_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/ic_profile"/>
 
-    <TextView
-        android:id="@+id/companyName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Company name"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+            tools:text="Contact details"/>
 
-    <TextView
-        android:id="@+id/phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
+        <TextView
+            android:id="@+id/companyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            tools:text="Company name"/>
 
-    <TextView
-        android:id="@+id/address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/contact_details_section"/>
 
-    <TextView
-        android:id="@+id/birthDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Birth date"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
