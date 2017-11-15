@@ -10,6 +10,7 @@
     <string name="main_title">Contacts</string>
     <string name="header_title_favorite_contacts">Favorite contacts</string>
     <string name="header_title_non_favorite_contacts">Other contacts</string>
-    <string name="menu_favorite">Favorite contact</string>
+    <string name="menu_make_favorite">Set as favorite</string>
+    <string name="menu_make_unfavorite">Set as unfavorite</string>
     <string name="contact_details_title">Contact details</string>
 </resources>
