@@ -1,5 +1,6 @@
 package com.solstice.solsticechallenge.data.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -29,10 +30,10 @@ public interface ContactsDao {
     public Contact findContact(String id);
 
     @Query("SELECT * FROM contacts WHERE favorite = 1 ORDER BY name")
-    public List<Contact> findFavoriteContacts();
+    public LiveData<List<Contact>> findFavoriteContacts();
 
     @Query("SELECT * FROM contacts WHERE favorite = 0 ORDER BY name")
-    public List<Contact> findNonFavoriteContacts();
+    public LiveData<List<Contact>> findNonFavoriteContacts();
 
     @Query("DELETE FROM contacts")
     public void deleteAllContacts();

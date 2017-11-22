@@ -28,6 +28,10 @@ ext {
     componentsVersion = '1.0.0'
     picassoVersion = '2.5.2'
     sectionedRecyclerVersion = '1.1.3'
+    junitVersion = '4.12'
+    espressotestrunnerVersion = '1.0.1'
+    espressocoreVersion = '3.0.1'
+    javaxannotationVersion = '1.0'
 }
 
 dependencies {
@@ -36,6 +40,7 @@ dependencies {
     implementation "com.android.support:design:$supportLibraryVersion"
     implementation "com.android.support:cardview-v7:$supportLibraryVersion"
     implementation "android.arch.persistence.room:runtime:$componentsVersion"
+    implementation "android.arch.lifecycle:extensions:$componentsVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
@@ -46,8 +51,9 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$componentsVersion"
-    testImplementation "junit:junit:4.12"
-    androidTestImplementation "com.android.support.test:runner:1.0.1"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.1"
-    compileOnly "javax.annotation:jsr250-api:1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:$componentsVersion"
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$espressotestrunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressocoreVersion"
+    compileOnly "javax.annotation:jsr250-api:$javaxannotationVersion"
 }
